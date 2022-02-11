@@ -18,7 +18,7 @@ class App extends React.Component{
     var newToDo = this.state.text;
     var arr = this.state.todo;
     arr.push(newToDo);
-    this.setState({todo: arr});
+    this.setState({todo: arr, text: ""});
   }
   renderTodos = () =>{
     return this.state.todo.map(t=>{
@@ -34,6 +34,7 @@ class App extends React.Component{
         <TextInput 
           style={styles.inputStyle}
           onChangeText={(text)=>this.setState({text})}
+          value={this.state.text}
         />
         <Button
           title='Add todo'
