@@ -12,10 +12,20 @@ import { Text, TextInput,Button , View } from 'react-native';
 class App extends React.Component{
   state = {
     text: "",
-    todo: ""
+    todo: []
   }
   addTodo = () =>{
-    this.setState({todo: this.state.text});
+    var newToDo = this.state.text;
+    var arr = this.state.todo;
+    arr.push(newToDo);
+    this.setState({todo: arr});
+  }
+  renderTodos = () =>{
+    return this.state.todo.map(t=>{
+      return (
+        <Text key={t}>{t}</Text>
+      )
+    })
   }
   render(){
     return (
@@ -29,7 +39,7 @@ class App extends React.Component{
           title='Add todo'
           onPress={this.addTodo}
         />
-        <Text>{this.state.todo}</Text>
+        {this.renderTodos()}
         <StatusBar style="auto" />
       </View>
     );
